@@ -10,7 +10,7 @@ This is a solution to the [Article preview component challenge on Frontend Mento
 ### Links
 
 - Solution URL: [Available on Frontend Mentor](https://www.frontendmentor.io/solutions/post-card-component-in-html-and-css-cZB5NV4YMS)
-- Live Site URL: [Hosted on Vercel](https://fm-blog-card-one.vercel.app/)
+- Live Site URL: [Hosted on Vercel](https://fm-article-eight.vercel.app/)
 
 ## My process
 
