@@ -51,6 +51,12 @@ body {
   padding: 4.5rem 1.5rem;
 }
 
+/* HIDING THE PAGE TITLE */
+.hidden {
+  position: absolute;
+  right: 999999px;
+}
+
 .article {
   /* this variables are used in nested elements
   horizonta-pagddin will be change for very small devices */
