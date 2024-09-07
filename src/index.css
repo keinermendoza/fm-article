@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* manrope-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/manrope-v15-latin-500.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+       url('../fonts/manrope-v15-latin-500.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+/* manrope-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/manrope-v15-latin-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+       url('../fonts/manrope-v15-latin-700.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+:root {
+  --ff-sans:'Manrope', sans-serif;
+  --fw--500:500;
+  --fw--700:700;
+  --fs--base:0.813rem;
+  --clr--black: hsl(217, 19%, 35%);
+  --clr--dark--gray: hsl(214, 17%, 51%);
+  --clr--gray: hsl(212, 23%, 69%);
+  --clr--light--gray: hsl(210, 46%, 95%);
+  --clr--white:#fff;
+}
+
+body {
+  font-family: var(--ff-sans);
+  font-weight: var(--fw--500);
+  font-size: var(--fs--base);
+  line-height: 1.5;
+  color: var(--clr--black);
+  background-color: var(--clr--light--gray);
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  padding: 4.5rem 1.5rem;
+}
+
+.article {
+  /* this variables are used in nested elements
+  horizonta-pagddin will be change for very small devices */
+  --horizontal-padding:2.25rem;
+  --border-radius:0.5rem;
+  
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 24rem;
+  border-radius: var(--border-radius);
+  background-color: var(--clr--white);
+  box-shadow: 0rem .25rem 2rem -1.5rem var(--clr--black);
+}
+
+.article__img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: 50% 32%;
+  aspect-ratio: 5/3;
+}
+
+/* ARTICLE MAIN */
+.article__main {
+  padding: var(--horizontal-padding);
+  padding-block-end: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .875rem;
+}
+.article__main .title {
+  font-weight: var(--fw--700);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.article__main .content {
+  color: var(--clr--dark--gray);
+}
+
+/* ARTICLE FOOTER */
+.article__footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .875rem var(--horizontal-padding);
+}
+.article.active .article__footer {
+  background-color: var(--clr--black);
+}
+.article__footer .author-info {
+  display: flex;
+  gap: 1rem;
+}
+.article__footer .author-info .avatar {
+  width: 2.5rem;
+  border-radius: 50%;
+}
+.article__footer .author-info .author-name {
+  font-weight: var(--fw--700);
+}
+.published-date {
+  color: var(--clr--gray)
+}
+
+/* SHARE BUTTON */
+.share-btn {
+  cursor: pointer;
+  margin-inline-start: auto;
+  position: relative;
+  z-index: 20;
+  background-color: var(--clr--light--gray);
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  color: var(--clr--dark--gray);
+}
+.share-btn svg {
+  fill:currentColor;
+}
+.article.active .share-btn {
+  background-color: var(--clr--dark--gray);
+  color: var(--clr--white);
+}
+
+/* SHARE TOOLTIP */
+.share-tooltip {
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: var(--clr--black);
+  padding-inline: var(--horizontal-padding);
+}
+.share-tooltip span {
+  color: var(--clr--gray);
+}
+.share-tooltip a {
+  display: grid;
+}
+.article.active .share-tooltip {
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25rem;
+  gap: 1rem
+}
+
+@media (min-width:56rem) {
+  .article {
+    max-width: 46rem;
+    overflow: unset;
+    flex-direction: row;
+  }
+  .article__img {
+    aspect-ratio: 1/1;
+    width: 38%;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+  .article__body {
+    padding-block-end: 1rem;
+    flex-grow: 1;
+  }
+  .article__main {
+    padding-block-end: 0.5rem;
+    margin-inline-end: 0.45rem;
+  }
+  .article__main .title {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  /* RESETING FOOTER */
+  .article.active .article__footer {
+    background-color: initial;
+  }
+
+  /* TOOLTIP */
+  .share-tooltip {
+    width: fit-content;
+    height: auto;
+    top: 0;
+    right: 0;
+    translate: 118% -110%;
+    padding-inline: var(--horizontal-padding);
+    padding-block: 1.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0rem .5rem 1.5rem -.5rem var(--clr--black);
+  }
+
+  .share-tooltip::after {
+    content: "";
+    position: absolute;
+    background-color: var(--clr--black);
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    rotate: 45deg;
+  }
+}
+
+/* REDUCING PADDING FOR VERY SMALL DEVICES */
+@media (max-width:22rem) {
+  .article {
+    --horizontal-padding:1.25rem;
+  }
+}
